@@ -241,6 +241,7 @@ enum
 #define kParamName "Driver Parameters"
 #define kEnableCSO6Name "enableCSO6"
 #define kEnableWoMName "enableWakeOnAddrMatch"
+#define kEnableWakeS5Name "enableWakeS5"
 #define kIntrRate10Name "maxIntrRate10"
 #define kIntrRate100Name "maxIntrRate100"
 #define kIntrRate1000Name "maxIntrRate1000"
@@ -544,6 +545,7 @@ private:
     bool wolActive;
     bool enableCSO6;
     bool enableWoM;
+    bool enableWakeS5;
 
     /* mbuf_t arrays */
     struct intelTxBufferInfo txBufArray[kNumTxDesc];

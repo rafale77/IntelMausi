@@ -67,6 +67,7 @@ void IntelMausi::getParams()
     OSNumber *num;
     OSBoolean *csoV6;
     OSBoolean *wom;
+    OSBoolean *ws5;
     UInt32 newIntrRate10;
     UInt32 newIntrRate100;
     UInt32 newIntrRate1000;
@@ -85,6 +86,11 @@ void IntelMausi::getParams()
         enableWoM = (wom) ? wom->getValue() : false;
 
         DebugLog("[IntelMausi]: Wake on address match %s.\n", enableWoM ? onName : offName);
+
+        ws5 = OSDynamicCast(OSBoolean, params->getObject(kEnableWakeS5Name));
+                enableWakeS5 = (ws5) ? ws5->getValue() : false;
+
+        DebugLog("[IntelMausi]: WoL from S5 %s.\n", enableWakeS5 ? onName : offName);
 
         /* Get maximum interrupt rate for 10M. */
         num = OSDynamicCast(OSNumber, params->getObject(kIntrRate10Name));
@@ -199,6 +205,7 @@ void IntelMausi::getParams()
         /* Use default values in case of missing config data. */
         enableCSO6 = false;
         enableWoM = false;
+        enableWakeS5 = false;
         newIntrRate10 = 3000;
         newIntrRate100 = 5000;
         newIntrRate1000 = 7000;
